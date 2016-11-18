@@ -1,0 +1,118 @@
+name:                bold-retriever
+version:             0.1.0.0
+synopsis:            btrieve-compatible dbp file parser.
+description:         Please see README.md
+license:             BSD3
+license-file:        LICENSE
+author:              Carl Haken
+copyright:           Copyright 2016 Carl Haken. All rights reserved.
+category:            Database
+build-type:          Simple
+cabal-version:       >=1.10
+
+                     
+executable view
+  hs-source-dirs:      src
+  main-is:             View.hs
+  default-language:    Haskell2010                                                                                                                                                       
+  other-modules:       Lib
+                     , FileControlRecord
+                     , ParserBaseLib
+                     , UnknownPage
+                     , PageAllocationTable
+                     , Parsers
+                     , StartOfRecordIndex
+                     , VariableDataPage
+
+
+  build-depends:       base >= 4.7 && < 5
+                     , parsec
+                     , attoparsec
+                     , bytestring
+                     , mtl
+                     , word8
+                     , safe
+                     , containers
+
+executable parse
+  hs-source-dirs:   src
+  main-is:          Parse.hs
+  default-language: Haskell2010
+  other-modules:       Lib
+                     , PageAllocationTable
+                     , StartOfRecordIndex
+                     , VariableDataPage
+                     , ParserBaseLib
+                     , Record
+                     , RunLengthEncodedBlock
+
+  build-depends:       base >= 4.7 && < 5
+                     , containers
+                     , parsec
+                     , attoparsec
+                     , bytestring
+                     , mtl
+                     , word8
+                     , safe
+                     , MissingH
+                     , split
+                     , csv
+
+
+executable findColumnLengths
+  hs-source-dirs:   src
+  main-is:          FindColumnLengths.hs
+  default-language: Haskell2010
+  other-modules:       Lib
+                     , PageAllocationTable
+                     , StartOfRecordIndex
+                     , VariableDataPage
+                     , ParserBaseLib
+                     , Record
+                     , RunLengthEncodedBlock
+
+  build-depends:       base >= 4.7 && < 5
+                     , containers
+                     , parsec
+                     , attoparsec
+                     , bytestring
+                     , mtl
+                     , word8
+                     , safe
+                     , MissingH
+
+
+
+
+
+library
+  hs-source-dirs:      src
+  exposed-modules:     PageAllocationTable
+                     , StartOfRecordIndex
+                     , VariableDataPage
+                     , Lib
+                     , FileControlRecord
+                     , ParserBaseLib
+                     , UnknownPage
+                     , Record
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+                     , containers
+                     , bytestring
+                     , parsec
+                     , attoparsec
+                     , bytestring
+                     , mtl
+                     , word8
+                     , safe
+                     , split
+
+test-suite spec
+  type:                exitcode-stdio-1.0
+  ghc-options:         -Wall
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+                     , hspec   == 2.*
+                     , btriever
