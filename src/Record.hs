@@ -1,23 +1,12 @@
-{-# LANGUAGE RecordWildCards #-}
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE ScopedTypeVariables #-}
-
 module Record where
 
-import Data.Attoparsec.ByteString hiding (take)
-import Data.Attoparsec.ByteString.Char8 hiding (take)
-import Data.Attoparsec.Internal.Types (Parser)
-
 import qualified Data.ByteString.Char8 as C
-import ParserBaseLib
-import Lib
-
-import Data.List (intercalate)
-import Data.Char (chr)
-import Data.Word8 (Word8)
+import Data.Attoparsec.ByteString.Char8 (parseOnly)
 import Data.List.Split (splitPlaces)
-
 import Data.Either (isRight)
+
+import ParserBaseLib (rightPaddedData')
+import Lib (bracketShowStr, indexToDelta)
 
 parse positions xs =
     let betterTry = better xs
