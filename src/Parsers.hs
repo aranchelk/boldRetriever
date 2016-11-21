@@ -2,9 +2,8 @@ module Parsers
     ( dbpSections
     ) where
 
-import qualified PageAllocationTable as PAT
 import Data.Attoparsec.ByteString (many1, choice, anyWord8)
-import Data.Word8
+import Data.Word8 (Word8)
 
 import qualified FileControlRecord as FCR
 import qualified PageAllocationTable as PAT
