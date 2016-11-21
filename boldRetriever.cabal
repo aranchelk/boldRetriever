@@ -1,4 +1,4 @@
-name:                bold-retriever
+name:                boldRetriever
 version:             0.1.0.0
 synopsis:            btrieve-compatible dbp file parser.
 description:         Please see README.md
