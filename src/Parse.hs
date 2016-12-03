@@ -1,10 +1,8 @@
 import System.Environment (getArgs) 
 
 import qualified Data.ByteString as B
---import qualified Data.ByteString.Char8 as C
 
-import Data.Either (rights, lefts)
-
+import Data.Either (rights)
 import Data.String.Utils (replace)
 
 import qualified PageAllocationTable as PAT
@@ -13,7 +11,6 @@ import qualified StartOfRecordIndex as SRI
 import qualified Record as R
 import qualified RunLengthEncodedBlock as RLB 
 
-import Data.Either (rights)
 import Text.CSV (printCSV)
 
 import ParserBaseLib (mapParse, concatMapParse, mapParse, mapParse)

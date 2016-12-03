@@ -1,7 +1,3 @@
-{-# LANGUAGE RecordWildCards #-}
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE ScopedTypeVariables #-}
-
 module StartOfRecordIndex where
 
 import Data.Attoparsec.ByteString hiding (take)
@@ -11,7 +7,6 @@ import Data.Attoparsec.Internal.Types (Parser)
 
 import ParserBaseLib
 
--- Start of record index (SRI) (68)
 code = 68
 isSRI = (word8 0) >> (int8 68)
 

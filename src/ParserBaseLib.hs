@@ -1,23 +1,16 @@
-{-# LANGUAGE RecordWildCards #-}
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE ScopedTypeVariables #-}
-
 module ParserBaseLib where
 
-import Data.Attoparsec.ByteString hiding (take)
-import Data.Attoparsec.Combinator (lookAhead)
-import Data.Attoparsec.ByteString.Char8 hiding (take)
+import Data.Attoparsec.ByteString (word8, notWord8, anyWord8, parseOnly)
+import Data.Attoparsec.Combinator (choice, count, many', lookAhead)
+import Data.Attoparsec.ByteString.Char8 (char, notChar, anyChar)
 import Data.Attoparsec.Internal.Types (Parser)
 import Data.Either (isRight, rights)
-import Data.Char (chr, ord)
 
 import Lib
 
---anyInt8 :: Data.Attoparsec.ByteString.Parser Int
 anyInt8 = fmap fromIntegral anyWord8
 int8 x = fmap fromIntegral $ word8 $ fromIntegral x 
 
--- little Endian
 anyInt16 = do
     x1 <- anyInt8
     x256 <- anyInt8
@@ -41,7 +34,6 @@ limitMaxLen rl p = do
 
 rightPaddedData rl = do
     d <- limitMaxLen rl $ many' nonNullChr
-    --count (rl - length d) oneNull
     count (rl - length d) anyChar
     return d
 
